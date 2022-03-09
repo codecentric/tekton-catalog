@@ -2,6 +2,10 @@
 
 ## How to Use
 
+```shell
+kubectl apply -f https://raw.githubusercontent.com/codecentric/tekton-catalog/main/task/argocd-task-create-sync-wait/0.3/argocd-task-create-sync-wait.yml
+```
+
 Use it in your Tekton Pipeline like this:
 
 ```yaml
@@ -25,11 +29,8 @@ Use it in your Tekton Pipeline like this:
           value: apps2deploy
 ```
 
-And apply it with
 
-```shell
-kubectl apply -f https://github.com/codecentric/tekton-catalog/blob/main/task/argocd-task-create-sync-wait/0.3/argocd-task-create-sync-wait.yml
-```
+
 
 
 #### Why create Argo App in Tekton?
