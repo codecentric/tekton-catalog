@@ -1,0 +1,70 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: gitlab-set-environment
+  labels:
+    app.kubernetes.io/version: "0.1"
+  annotations:
+    tekton.dev/pipelines.minVersion: "0.12.1"
+    tekton.dev/categories: Git
+    tekton.dev/tags: gitlab, git
+    tekton.dev/displayName: "Set Gitlab commit environment"
+    tekton.dev/platforms: "linux/amd64"
+spec:
+  description: >-
+    This task creates or updates an environment within a gitlab project.
+
+  params:
+    - name: GITLAB_HOST_URL
+      description: |
+        The GitLab host, adjust this if you run a GitLab enterprise.
+      default: "https://gitlab.com"
+      type: string
+
+    - name: REPO_FULL_NAME
+      description: |
+        The GitLab repository full name, e.g.: codecentric/tekton-catalog
+      type: string
+
+    - name: GITLAB_TOKEN_SECRET_NAME
+      description: |
+        The name of the kubernetes secret that contains the GitLab token, default: gitlab-api-secret
+      type: string
+      default: gitlab-api-secret
+
+    - name: GITLAB_TOKEN_SECRET_KEY
+      description: |
+        The key within the kubernetes secret that contains the GitLab token, default: token
+      type: string
+      default: token
+
+    - name: ENVIRONMENT_NAME
+      description: |
+        Name of the environment
+      type: string
+      default: main
+
+    - name: ENVIRONMENT_URL
+      description: |
+        The target URL to associate with the environment.
+      type: string
+      default: https://codecentric.de
+
+  steps:
+    - name: set-environment
+      image: ghcr.io/marcopaga/tekton-task-gitlab-set-environment:259209d
+
+      env:
+        - name: GITLAB_HOST_URL
+          value: $(params.GITLAB_HOST_URL)
+        - name: REPO_FULL_NAME
+          value: $(params.REPO_FULL_NAME)
+        - name: GITLAB_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: $(params.GITLAB_TOKEN_SECRET_NAME)
+              key: $(params.GITLAB_TOKEN_SECRET_KEY)
+        - name: ENVIRONMENT_NAME
+          value: $(params.ENVIRONMENT_NAME)
+        - name: ENVIRONMENT_URL
+          value: $(params.ENVIRONMENT_URL)
