@@ -52,7 +52,7 @@ spec:
 
   steps:
     - name: set-environment
-      image: ghcr.io/marcopaga/tekton-task-gitlab-set-environment:259209d
+      image: ghcr.io/marcopaga/tekton-task-gitlab-set-environment:37f218b
 
       env:
         - name: GITLAB_HOST_URL
