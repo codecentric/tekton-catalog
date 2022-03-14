@@ -5,7 +5,7 @@ This task creates or updates an environment within a gitlab project.
 ### Install the Task
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/codecentric/tekton-catalog/task/gitlab-set-environment/0.1/gitlab-set-environment.yaml
+kubectl apply -f https://raw.githubusercontent.com/codecentric/tekton-catalog/main/task/gitlab-set-environment/0.1/gitlab-set-environment.yaml
 ```
 
 ### Parameters
