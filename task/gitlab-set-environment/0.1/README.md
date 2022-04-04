@@ -1,6 +1,6 @@
 # GitLab Set Environment
 
-This task creates or updates an environment within a gitlab project.
+This task creates or updates an environment within a gitlab project. The tasks leverages [marcopaga/tekton-task-gitlab-set-environment](https://github.com/marcopaga/tekton-task-gitlab-set-environment) to access the Gitlab API.
 
 ### Install the Task
 
