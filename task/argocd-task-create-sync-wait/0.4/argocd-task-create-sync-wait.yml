@@ -38,9 +38,9 @@ spec:
       default: "--insecure"
     - name: argocd-version
       default: v2.2.2
-    - name: wait-timeout
-      default: "300"
+    - name: wait-timeout-in-seconds
       description: "Time out after this many seconds."
+      default: "300"
 
   steps:
     - name: login-create-sync
@@ -51,7 +51,7 @@ spec:
         fi
         argocd app create "$(params.application-name)" --repo "$(params.config-repository)" --path "$(params.config-path)" --project "$(params.argo-appproject)" --dest-server https://kubernetes.default.svc --dest-namespace "$(params.destination-namespace)" --revision "$(params.config-revision)" --upsert --auto-prune --sync-policy auto "$(params.flags)"
         argocd app sync "$(params.application-name)" --revision "$(params.config-revision)" "$(params.flags)"
-        argocd app wait "$(params.application-name)" --health "$(params.flags)" --timeout $(params.wait-timeout)
+        argocd app wait "$(params.application-name)" --health "$(params.flags)" --timeout $(params.wait-timeout-in-seconds)
       envFrom:
         - configMapRef:
             name: argocd-env-configmap  # used for server address

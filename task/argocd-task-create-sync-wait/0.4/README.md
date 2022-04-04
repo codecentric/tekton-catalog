@@ -27,6 +27,8 @@ Use it in your Tekton Pipeline like this:
           value: default
         - name: argo-appproject
           value: apps2deploy
+        - name: wait-timeout-in-seconds
+          description: "Time out after this many seconds."
 ```
 
 
