@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: dump-workspace
+spec:
+  workspaces:
+    - name: source
+      description: A workspace that needs to be dumped.
+  steps:
+    - name: dump-directory
+      image: alpine
+      workingDir: $(workspaces.source.path)
+      command:
+        - /bin/sh
+      args:
+        - '-c'
+        - |
+          set -ex
+          cd /workspace
+          ls -R
+
