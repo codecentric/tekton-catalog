@@ -17,3 +17,7 @@ Tekton Tasks with extended functionality compared to https://hub.tekton.dev
 ## Dump Workspace
 
 [Dump the contents of a workspace](https://github.com/codecentric/tekton-catalog/tree/main/task/dump-workspace/0.1)
+
+## Replace Yaml values with yq
+
+[This task replaces multiple (or one) value(s) using yq](https://github.com/codecentric/tekton-catalog/tree/main/task/replace-yaml-value-with-yq/0.1)
