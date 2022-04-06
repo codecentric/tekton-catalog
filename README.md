@@ -1,4 +1,7 @@
 # tekton-catalog
+[![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/codecentric/tekton-catalog/blob/main/LICENSE)
+[![renovateenabled](https://img.shields.io/badge/renovate-enabled-yellow)](https://renovatebot.com)
+
 Tekton Tasks with extended functionality compared to https://hub.tekton.dev
 
 # Included tasks
